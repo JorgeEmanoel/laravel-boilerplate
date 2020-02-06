@@ -48,9 +48,9 @@ return [
     'level_translation' => [
         'global' => 'All records',
         'owner' => 'All records user created',
-        'relationship' => 'Throught relation',
-        'user_relationship' => 'Throught user relation',
-        'column' => 'Throught some user data',
+        'relationship' => 'Through relation',
+        'user_relationship' => 'Through user relation',
+        'column' => 'Through some user data',
         'user' => 'Specifc user',
     ],
 
