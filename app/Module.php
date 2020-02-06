@@ -24,4 +24,24 @@ class Module extends Model
     {
         return $this->hasMany('App\Permission');
     }
+
+    /**
+     * Get the module's enabled profiles
+     * @return Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function profiles()
+    {
+        return $this->belongsToMany('App\Profile', 'module_profiles');
+    }
+
+    /**
+     * Get the module permissions acordding to a level name
+     * @return Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function getLevelPermissions(string $level_name)
+    {
+        return $this->permissions()
+            ->where('name', 'like', "$level_name.%")
+            ->get();
+    }
 }
