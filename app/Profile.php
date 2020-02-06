@@ -31,4 +31,25 @@ class Profile extends Model
     {
         return $this->belongsToMany('App\Permission', 'profile_permissions');
     }
+
+    /**
+     * Get the profile's enabled modules
+     * @return Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function modules()
+    {
+        return $this->belongsToMany('App\Module', 'module_profiles');
+    }
+
+    /**
+     * Check if the profile owns some permission
+     * @param App\Permission $permission
+     * @return boolean
+     */
+    public function hasPermission(Permission $permission)
+    {
+        return $this->permissions()
+            ->wherePivot('permission_id', $permission->id)
+            ->count() > 0;
+    }
 }
