@@ -81,8 +81,8 @@
                 <div class="panel-body">
                     <div class="list-group">
                         @foreach ($profiles as $profile)
-                            <a href="{{ route('acl.modules.show', $profile->id) }}" class="list-group-item">
-                                {{ $profile->name }}
+                            <a href="javascript:void(0)" class="list-group-item">
+                                {{ $profile->name }} ({{ $profile->users->count() }} users)
                             </a>
                         @endforeach
                     </div>
