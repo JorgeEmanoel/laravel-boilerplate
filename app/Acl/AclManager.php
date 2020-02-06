@@ -25,6 +25,7 @@ class AclManager {
         'column' => 'checkColumnPermission',
         'user' => 'checkUserPermission',
     ];
+    protected $level_translation;
 
     public function __construct(string $model_name)
     {
@@ -38,6 +39,7 @@ class AclManager {
         $this->active = $module['active'];
         $this->general_actions = config('acl.general_actions');
         $this->module = Module::where('class_name', $model_name)->first();
+        $this->level_translation = config('acl.level_translation');
     }
 
     ############################################################################
@@ -70,6 +72,20 @@ class AclManager {
             }
         }
         return $levels;
+    }
+
+    /**
+     * Get the module level name translate
+     * @param string $level_name
+     * @return array
+     */
+    public function getLevelTranslated($level_name)
+    {
+        if (isset($this->level_translation[$level_name])) {
+            return $this->level_translation[$level_name];
+        } else {
+            return null;
+        }
     }
 
     /**
