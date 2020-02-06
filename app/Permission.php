@@ -31,4 +31,13 @@ class Permission extends Model
     {
         return $this->belongsToMany('App\Profile', 'profile_permissions');
     }
+
+    /**
+     * Get the permission's name
+     * @return string
+     */
+    public function getName()
+    {
+        return ucfirst(strtolower(explode('.', $this->name)[1]));
+    }
 }
