@@ -146,6 +146,16 @@ class AclManager {
     }
 
     /**
+     * Check if its an only admin modules
+     *
+     * @return boolean
+     */
+    public function isAdminOnly()
+    {
+        return $this->admin_only;
+    }
+
+    /**
      * Check if module has a permission (permissions table)
      * @param string $permission_name
      * @return boolean
@@ -338,7 +348,7 @@ class AclManager {
     }
 
     /**
-     * Check if an action can be performed by and user on a given module/model
+     * Check if an action can be performed by an user on a given module/model
      * @param User $user
      * @param Illuminate\Database\Eloquent\Model | null $model
      * @return boolean
