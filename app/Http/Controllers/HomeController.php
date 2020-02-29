@@ -28,8 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        $acl = new AclManager('App\Product');
-        return view('home', compact('products', 'acl'));
+        return view('home');
     }
 }
