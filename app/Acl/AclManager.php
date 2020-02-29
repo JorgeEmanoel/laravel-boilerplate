@@ -26,6 +26,10 @@ class AclManager {
         'user' => 'checkUserPermission',
     ];
     protected $level_translation;
+    protected $modelless_actions = [
+        'list',
+        'create',
+    ];
 
     public function __construct(string $model_name)
     {
@@ -183,12 +187,12 @@ class AclManager {
 
     /**
      * Check if it is necessary a model instance for the given gate rule
-     * @param string $level_name
+     * @param string $action
      * @return boolean
      */
-    public static function isModelNecessary(string $level_name)
+    public static function isModelNecessary(string $action)
     {
-        return true;
+        return !in_array($action, $this->modelless_actions);
     }
 
     ############################################################################
@@ -203,15 +207,12 @@ class AclManager {
      */
     public function checkGlobalPermission(User $user, $model = null, $db_action_name = '')
     {
-        if ($model) {
-            $model = clone $model;
-        }
         foreach ($user->profiles as $profile) {
-            if (!$this->profileHasPermission($profile, $db_action_name)) {
-                return false;
+            if ($this->profileHasPermission($profile, $db_action_name)) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     /**
