@@ -12,6 +12,7 @@ return [
     |
     */
     'general_actions' => [
+        'list',
         'create',
         'read',
         'update',
