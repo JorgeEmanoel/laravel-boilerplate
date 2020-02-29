@@ -19,15 +19,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    @foreach (Auth::user()->profiles as $profile)
-                        <p>{{ $profile->name }}</p>
-                    @endforeach
-
-                    @if (Auth::user()->isSuperAdmin())
-                        <br>
-                        <a href="{{ route('acl.index') }}">ACL Manager</a>
-                    @endif
                 </div>
             </div>
         </div>
