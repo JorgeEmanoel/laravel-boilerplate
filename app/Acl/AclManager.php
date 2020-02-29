@@ -88,7 +88,7 @@ class AclManager {
         if (isset($this->level_translation[$level_name])) {
             return $this->level_translation[$level_name];
         } else {
-            return null;
+            return $level_name;
         }
     }
 
